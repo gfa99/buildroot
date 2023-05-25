@@ -8,3 +8,15 @@ BR2_cortex_a55=y
 # Toolchain
 #
 BR2_TOOLCHAIN_EXTERNAL=y
+BR2_TOOLCHAIN_EXTERNAL_CUSTOM=y
+# buildroot 不支持天准给的 gcc-ubuntu-9.3.0-2020.03-x86_64-aarch64-linux-gnu 工具链?!
+# 找了半天总算找到与J5原生根文件系统中glibc相同版本的交叉编译工具链，否则得自己构建交叉编译工具链了！！！
+# https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz
+BR2_TOOLCHAIN_EXTERNAL_PATH="$(TOPDIR)/dl/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu"
+BR2_TOOLCHAIN_EXTERNAL_CUSTOM_PREFIX="$(ARCH)-none-linux-gnu"
+BR2_TOOLCHAIN_EXTERNAL_GCC_10=y
+BR2_TOOLCHAIN_EXTERNAL_HEADERS_4_20=y
+BR2_TOOLCHAIN_EXTERNAL_CUSTOM_GLIBC=y
+BR2_TOOLCHAIN_EXTERNAL_CXX=y
+BR2_TOOLCHAIN_EXTERNAL_FORTRAN=y
+BR2_TOOLCHAIN_EXTERNAL_OPENMP=y
