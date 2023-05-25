@@ -382,6 +382,7 @@ int main(int argc, char **argv)
 		*cur++ = "-march=" BR_ARCH;
 #endif
 #ifdef BR_CPU
+	if (strncmp(BR_CPU, "cortex-a55",  strlen("cortex-a55" ))) // fix error: unknown value ‘cortex-a55’ for -mcpu (for busybox)
 		*cur++ = "-mcpu=" BR_CPU;
 #endif
 	}
