@@ -1,3 +1,5 @@
+# From https://www.python.org/downloads/release/python-388/
+md5  23e6b769857233c1ac07b6be7442eff4  Python-3.8.8.tar.xz
 # Locally computed
-sha256  6a30ecde59c47048013eb5a658c9b5dec277203d2793667f578df7671f7f03f3  Python-3.10.8.tar.xz
-sha256  d4a223f033419313218c9b8444167e91e87a5bebdb43fb8490df441df5220a8b  LICENSE
+sha256  7c664249ff77e443d6ea0e4cf0e587eae918ca3c48d081d1915fe2a1f1bcc5cc  Python-3.8.8.tar.xz
+sha256  599826df92bfdcd2702eac691072498bb096c55af04ee984cf90f70ed77b5a70  LICENSE
