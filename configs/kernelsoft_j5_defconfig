@@ -20,3 +20,4 @@ BR2_TOOLCHAIN_EXTERNAL_CXX=y
 # Packages
 ## Interpreter languages and scripting -> python3
 BR2_PACKAGE_PYTHON3=y
+BR2_PACKAGE_PYTHON_PIP=y
