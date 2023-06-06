@@ -24,6 +24,8 @@ BR2_TOOLCHAIN_EXTERNAL_OPENMP=y
 #
 # Target packages
 #
+## Development tools -> ctest
+BR2_PACKAGE_CMAKE_CTEST=y
 ## Interpreter languages and scripting -> python3
 BR2_PACKAGE_PYTHON3=y
 BR2_PACKAGE_PYTHON_PIP=y
