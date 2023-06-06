@@ -1,4 +1,4 @@
-# Target options
+# Target
 BR2_aarch64=y
 BR2_cortex_a55=y
 
@@ -17,15 +17,7 @@ BR2_TOOLCHAIN_EXTERNAL_HEADERS_4_20=y
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM_GLIBC=y
 BR2_TOOLCHAIN_EXTERNAL_CXX=y
 
-# System configuration
-BR2_ROOTFS_SKELETON_CUSTOM=y
-BR2_ROOTFS_SKELETON_CUSTOM_PATH="/disk/zzl/ros-cross_compile/j5/rfs_skeleton"
-BR2_INIT_SYSV=y
-
-# Target packages
-# BR2_PACKAGE_BUSYBOX is not set
-## Networking applications -> ifupdown scripts
-# BR2_PACKAGE_IFUPDOWN_SCRIPTS is not set
+# Packages
 ## Interpreter languages and scripting -> python3
 BR2_PACKAGE_PYTHON3=y
 #BR2_PACKAGE_PYTHON_PIP=y
