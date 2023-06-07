@@ -751,6 +751,7 @@ target-finalize: $(PACKAGES) $(TARGET_DIR) host-finalize
 	@$(call MESSAGE,"Finalizing target directory")
 	$(call per-package-rsync,$(sort $(PACKAGES)),target,$(TARGET_DIR))
 	$(foreach hook,$(TARGET_FINALIZE_HOOKS),$($(hook))$(sep))
+ifneq ($(BR2_NOT_REMOVE_ANYTHING_OF_TARGET),y)
 	rm -rf $(TARGET_DIR)/usr/include $(TARGET_DIR)/usr/share/aclocal \
 		$(TARGET_DIR)/usr/lib/pkgconfig $(TARGET_DIR)/usr/share/pkgconfig \
 		$(TARGET_DIR)/usr/lib/cmake $(TARGET_DIR)/usr/share/cmake
@@ -775,13 +776,15 @@ endif
 ifneq ($(BR2_ENABLE_DEBUG):$(BR2_STRIP_strip),y:)
 	rm -rf $(TARGET_DIR)/lib/debug $(TARGET_DIR)/usr/lib/debug
 endif
+endif
 	$(STRIP_FIND_CMD) | xargs -0 $(STRIPCMD) 2>/dev/null || true
 	$(STRIP_FIND_SPECIAL_LIBS_CMD) | xargs -0 -r $(STRIPCMD) $(STRIP_STRIP_DEBUG) 2>/dev/null || true
-
+ifneq ($(BR2_NOT_CHECK_CONFIG_OF_TARGET),y)
 	test -f $(TARGET_DIR)/etc/ld.so.conf && \
 		{ echo "ERROR: we shouldn't have a /etc/ld.so.conf file"; exit 1; } || true
 	test -d $(TARGET_DIR)/etc/ld.so.conf.d && \
 		{ echo "ERROR: we shouldn't have a /etc/ld.so.conf.d directory"; exit 1; } || true
+endif
 	mkdir -p $(TARGET_DIR)/etc
 	( \
 		echo "NAME=Buildroot"; \
@@ -1077,7 +1080,7 @@ distclean: clean
 ifeq ($(O),$(CURDIR)/output)
 	rm -rf $(O)
 endif
-	rm -rf $(TOPDIR)/dl $(BR2_CONFIG) $(CONFIG_DIR)/.config.old $(CONFIG_DIR)/..config.tmp \
+	rm -rf $(BR2_CONFIG) $(CONFIG_DIR)/.config.old $(CONFIG_DIR)/..config.tmp \
 		$(CONFIG_DIR)/.auto.deps $(BASE_DIR)/.br2-external.*
 
 .PHONY: help

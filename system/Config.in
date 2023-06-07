@@ -603,4 +603,10 @@ config BR2_ROOTFS_POST_SCRIPT_ARGS
 	  target directory / images directory. The arguments in this
 	  option will be passed *after* those.
 
+config BR2_NOT_REMOVE_ANYTHING_OF_TARGET
+	bool "Not allowed to remove anything from the target"
+
+config BR2_NOT_CHECK_CONFIG_OF_TARGET
+	bool "Not check some config of target"
+
 endmenu

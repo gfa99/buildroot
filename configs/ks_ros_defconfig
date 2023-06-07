@@ -22,6 +22,12 @@ BR2_TOOLCHAIN_EXTERNAL_FORTRAN=y
 BR2_TOOLCHAIN_EXTERNAL_OPENMP=y
 
 #
+# System configuration
+#
+BR2_NOT_REMOVE_ANYTHING_OF_TARGET=y
+BR2_NOT_CHECK_CONFIG_OF_TARGET=y
+
+#
 # Target packages
 #
 ## Development tools -> ctest
