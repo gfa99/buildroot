@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBASIO
+	bool "libasio"
+	select BR2_PACKAGE_BOOST
+	help
+	  Asio is a cross-platform C++ library for network and low-level
+	  I/O programming that provides developers with a consistent
+	  asynchronous model using a modern C++ approach.
+
+	  http://asio.sourceforge.net/
+
+comment "libasio need to depends on basic boost"
