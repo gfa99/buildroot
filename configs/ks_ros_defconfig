@@ -35,5 +35,7 @@ BR2_PACKAGE_CMAKE_CTEST=y
 ## Interpreter languages and scripting -> python3
 BR2_PACKAGE_PYTHON3=y
 BR2_PACKAGE_PYTHON_PIP=y
+## Libraries -> JSON/XML -> tinyxml2
+BR2_PACKAGE_TINYXML2=y
 ## Libraries -> Other -> libasio
 BR2_PACKAGE_LIBASIO=y
