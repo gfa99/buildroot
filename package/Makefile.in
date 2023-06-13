@@ -412,6 +412,8 @@ ifeq ($(BR2_COMPILER_PARANOID_UNSAFE_PATH),y)
 export BR_COMPILER_PARANOID_UNSAFE_PATH=enabled
 endif
 
+export PKG_INSTALL_PREFIX=$(shell if [ -n $(BR2_PACKAGE_INSTALL_PREFIX) ]; then echo $(BR2_PACKAGE_INSTALL_PREFIX); else echo /usr; fi)
+
 include package/pkg-download.mk
 include package/pkg-autotools.mk
 include package/pkg-cmake.mk

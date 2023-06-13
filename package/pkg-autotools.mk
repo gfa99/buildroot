@@ -187,8 +187,8 @@ define $(2)_CONFIGURE_CMDS
 		--target=$$(GNU_TARGET_NAME) \
 		--host=$$(GNU_TARGET_NAME) \
 		--build=$$(GNU_HOST_NAME) \
-		--prefix=/usr \
-		--exec-prefix=/usr \
+		--prefix=$$(PKG_INSTALL_PREFIX) \
+		--exec-prefix=$$(PKG_INSTALL_PREFIX) \
 		--sysconfdir=/etc \
 		--localstatedir=/var \
 		--program-prefix="" \
