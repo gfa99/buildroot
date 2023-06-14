@@ -1,0 +1,12 @@
+--- Python-3.8.8/setup.py	2021-02-19 18:28:41.000000000 +0800
++++ mod/setup.py	2023-06-14 15:11:12.816011861 +0800
+@@ -623,6 +623,9 @@
+                                             line.strip())
+         finally:
+             os.unlink(tmpfile)
++        # append sysroot/usr/local/lib for fix compile error
++        sysroot = os.popen('LC_ALL=C %s -print-sysroot' % cc)
++        add_dir_to_list(self.compiler.library_dirs, '%s%s' % (sysroot.readline().strip('\n'), '/usr/local/lib') )
+ 
+     def add_ldflags_cppflags(self):
+         # Add paths specified in the environment variables LDFLAGS and
