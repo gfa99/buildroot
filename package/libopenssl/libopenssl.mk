@@ -75,7 +75,7 @@ define LIBOPENSSL_CONFIGURE_CMDS
 		./Configure \
 			$(LIBOPENSSL_TARGET_ARCH) \
 			--prefix=$(PKG_INSTALL_PREFIX) \
-			--openssldir=/etc/ssl \
+			--openssldir=$(PKG_INSTALL_PREFIX)/etc/ssl \
 			$(if $(BR2_TOOLCHAIN_HAS_LIBATOMIC),-latomic) \
 			$(if $(BR2_TOOLCHAIN_HAS_THREADS),-lpthread threads, no-threads) \
 			$(if $(BR2_STATIC_LIBS),no-shared,shared) \

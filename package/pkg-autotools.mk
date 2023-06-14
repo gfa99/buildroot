@@ -189,7 +189,7 @@ define $(2)_CONFIGURE_CMDS
 		--build=$$(GNU_HOST_NAME) \
 		--prefix=$$(PKG_INSTALL_PREFIX) \
 		--exec-prefix=$$(PKG_INSTALL_PREFIX) \
-		--sysconfdir=/etc \
+		--sysconfdir=$$(PKG_INSTALL_PREFIX)/etc \
 		--localstatedir=/var \
 		--program-prefix="" \
 		--disable-gtk-doc \

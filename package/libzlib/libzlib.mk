@@ -31,6 +31,7 @@ define LIBZLIB_CONFIGURE_CMDS
 		./configure \
 		$(LIBZLIB_SHARED) \
 		--prefix=$(PKG_INSTALL_PREFIX) \
+		--sysconfdir=$(PKG_INSTALL_PREFIX)/etc \
 	)
 endef
 
