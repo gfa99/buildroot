@@ -74,7 +74,7 @@ define LIBOPENSSL_CONFIGURE_CMDS
 		$(TARGET_CONFIGURE_OPTS) \
 		./Configure \
 			$(LIBOPENSSL_TARGET_ARCH) \
-			--prefix=/usr \
+			--prefix=$(PKG_INSTALL_PREFIX) \
 			--openssldir=/etc/ssl \
 			$(if $(BR2_TOOLCHAIN_HAS_LIBATOMIC),-latomic) \
 			$(if $(BR2_TOOLCHAIN_HAS_THREADS),-lpthread threads, no-threads) \
@@ -111,8 +111,8 @@ endef
 
 define LIBOPENSSL_INSTALL_TARGET_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(TARGET_DIR) install
-	rm -rf $(TARGET_DIR)/usr/lib/ssl
-	rm -f $(TARGET_DIR)/usr/bin/c_rehash
+	rm -rf $(TARGET_DIR)$(PKG_INSTALL_PREFIX)/lib/ssl
+	rm -f $(TARGET_DIR)$(PKG_INSTALL_PREFIX)/bin/c_rehash
 endef
 
 ifeq ($(BR2_PACKAGE_PERL),)
@@ -124,7 +124,7 @@ endif
 
 ifeq ($(BR2_PACKAGE_LIBOPENSSL_BIN),)
 define LIBOPENSSL_REMOVE_BIN
-	$(RM) -f $(TARGET_DIR)/usr/bin/openssl
+	$(RM) -f $(TARGET_DIR)$(PKG_INSTALL_PREFIX)/bin/openssl
 	$(RM) -f $(TARGET_DIR)/etc/ssl/misc/{CA.*,c_*}
 endef
 LIBOPENSSL_POST_INSTALL_TARGET_HOOKS += LIBOPENSSL_REMOVE_BIN
@@ -132,7 +132,7 @@ endif
 
 ifneq ($(BR2_PACKAGE_LIBOPENSSL_ENGINES),y)
 define LIBOPENSSL_REMOVE_LIBOPENSSL_ENGINES
-	rm -rf $(TARGET_DIR)/usr/lib/engines-1.1
+	rm -rf $(TARGET_DIR)$(PKG_INSTALL_PREFIX)/lib/engines-1.1
 endef
 LIBOPENSSL_POST_INSTALL_TARGET_HOOKS += LIBOPENSSL_REMOVE_LIBOPENSSL_ENGINES
 endif

@@ -57,7 +57,7 @@ BOOST_TARGET_CXXFLAGS = $(TARGET_CXXFLAGS)
 BOOST_FLAGS = --with-toolset=gcc
 
 ifeq ($(BR2_PACKAGE_ICU),y)
-BOOST_FLAGS += --with-icu=$(STAGING_DIR)/usr
+BOOST_FLAGS += --with-icu=$(STAGING_DIR)$(PKG_INSTALL_PREFIX)
 BOOST_DEPENDENCIES += icu
 else
 BOOST_FLAGS += --without-icu
@@ -71,11 +71,11 @@ ifeq ($(BR2_PACKAGE_BOOST_PYTHON),y)
 BOOST_FLAGS += --with-python-root=$(HOST_DIR)
 ifeq ($(BR2_PACKAGE_PYTHON3),y)
 BOOST_FLAGS += --with-python=$(HOST_DIR)/bin/python$(PYTHON3_VERSION_MAJOR)
-BOOST_TARGET_CXXFLAGS += -I$(STAGING_DIR)/usr/include/python$(PYTHON3_VERSION_MAJOR)
+BOOST_TARGET_CXXFLAGS += -I$$(STAGING_DIR)$(PKG_INSTALL_PREFIX)/include/python$(PYTHON3_VERSION_MAJOR)
 BOOST_DEPENDENCIES += python3
 else
 BOOST_FLAGS += --with-python=$(HOST_DIR)/bin/python$(PYTHON_VERSION_MAJOR)
-BOOST_TARGET_CXXFLAGS += -I$(STAGING_DIR)/usr/include/python$(PYTHON_VERSION_MAJOR)
+BOOST_TARGET_CXXFLAGS += -I$$(STAGING_DIR)$(PKG_INSTALL_PREFIX)/include/python$(PYTHON_VERSION_MAJOR)
 BOOST_DEPENDENCIES += python
 endif
 endif
@@ -149,7 +149,7 @@ define BOOST_INSTALL_TARGET_CMDS
 	(cd $(@D) && $(TARGET_MAKE_ENV) ./b2 -j$(PARALLEL_JOBS) -q \
 	--user-config=$(@D)/user-config.jam \
 	$(BOOST_OPTS) \
-	--prefix=$(TARGET_DIR)/usr \
+	--prefix=$(TARGET_DIR)$(PKG_INSTALL_PREFIX) \
 	--ignore-site-config \
 	--layout=$(BOOST_LAYOUT) install )
 endef
@@ -158,7 +158,7 @@ define BOOST_INSTALL_STAGING_CMDS
 	(cd $(@D) && $(TARGET_MAKE_ENV) ./tools/build/src/engine/bjam -j$(PARALLEL_JOBS) -q \
 	--user-config=$(@D)/user-config.jam \
 	$(BOOST_OPTS) \
-	--prefix=$(STAGING_DIR)/usr \
+	--prefix=$(STAGING_DIR)$(PKG_INSTALL_PREFIX) \
 	--ignore-site-config \
 	--layout=$(BOOST_LAYOUT) install)
 endef
@@ -167,14 +167,14 @@ endef
 # Indeed boost buildsystem can select a library even if the user has
 # disable it
 define BOOST_REMOVE_TARGET_LIBRARIES
-	rm -rf $(TARGET_DIR)/usr/lib/libboost_*
+	rm -rf $(TARGET_DIR)$(PKG_INSTALL_PREFIX)/lib/libboost_*
 endef
 
 BOOST_PRE_INSTALL_TARGET_HOOKS += BOOST_REMOVE_TARGET_LIBRARIES
 
 define BOOST_CHECK_TARGET_LIBRARIES
 	@$(foreach disabled,$(BOOST_WITHOUT_FLAGS),\
-		! ls $(TARGET_DIR)/usr/lib/libboost_$(disabled)* 1>/dev/null 2>&1 || \
+		! ls $(TARGET_DIR)$(PKG_INSTALL_PREFIX)/lib/libboost_$(disabled)* 1>/dev/null 2>&1 || \
 			! echo "libboost_$(disabled) shouldn't have been installed: missing select in boost/Config.in" || \
 			exit 1;)
 endef

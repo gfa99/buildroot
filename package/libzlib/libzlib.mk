@@ -30,7 +30,7 @@ define LIBZLIB_CONFIGURE_CMDS
 		CFLAGS="$(TARGET_CFLAGS) $(LIBZLIB_PIC)" \
 		./configure \
 		$(LIBZLIB_SHARED) \
-		--prefix=/usr \
+		--prefix=$(PKG_INSTALL_PREFIX) \
 	)
 endef
 
