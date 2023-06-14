@@ -35,18 +35,18 @@ PKG_PYTHON_DISTUTILS_ENV = \
 	PYTHONNOUSERSITE=1 \
 	_PYTHON_SYSCONFIGDATA_NAME="$(PKG_PYTHON_SYSCONFIGDATA_NAME)" \
 	_python_sysroot=$(STAGING_DIR) \
-	_python_prefix=/usr \
-	_python_exec_prefix=/usr
+	_python_prefix=$(PKG_INSTALL_PREFIX) \
+	_python_exec_prefix=$(PKG_INSTALL_PREFIX)
 
 PKG_PYTHON_DISTUTILS_BUILD_OPTS = \
-	--executable=/usr/bin/python
+	--executable=$(PKG_INSTALL_PREFIX)/bin/python
 
 PKG_PYTHON_DISTUTILS_INSTALL_TARGET_OPTS = \
-	--prefix=/usr \
+	--prefix=$(PKG_INSTALL_PREFIX) \
 	--root=$(TARGET_DIR)
 
 PKG_PYTHON_DISTUTILS_INSTALL_STAGING_OPTS = \
-	--prefix=/usr \
+	--prefix=$(PKG_INSTALL_PREFIX) \
 	--root=$(STAGING_DIR)
 
 # Host distutils-based packages
@@ -66,18 +66,18 @@ PKG_PYTHON_SETUPTOOLS_ENV = \
 	PYTHONPATH="$(if $(BR2_PACKAGE_PYTHON3),$(PYTHON3_PATH),$(PYTHON_PATH))" \
 	PYTHONNOUSERSITE=1 \
 	_python_sysroot=$(STAGING_DIR) \
-	_python_prefix=/usr \
-	_python_exec_prefix=/usr
+	_python_prefix=$(PKG_INSTALL_PREFIX) \
+	_python_exec_prefix=$(PKG_INSTALL_PREFIX)
 
 PKG_PYTHON_SETUPTOOLS_INSTALL_TARGET_OPTS = \
-	--prefix=/usr \
-	--executable=/usr/bin/python \
+	--prefix=$(PKG_INSTALL_PREFIX) \
+	--executable=$(PKG_INSTALL_PREFIX)/bin/python \
 	--single-version-externally-managed \
 	--root=$(TARGET_DIR)
 
 PKG_PYTHON_SETUPTOOLS_INSTALL_STAGING_OPTS = \
-	--prefix=/usr \
-	--executable=/usr/bin/python \
+	--prefix=$(PKG_INSTALL_PREFIX) \
+	--executable=$(PKG_INSTALL_PREFIX)/bin/python \
 	--single-version-externally-managed \
 	--root=$(STAGING_DIR)
 

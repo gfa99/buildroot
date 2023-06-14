@@ -313,13 +313,13 @@ $(BUILD_DIR)/%/.stamp_staging_installed:
 		$(call MESSAGE,"Fixing package configuration files") ;\
 			$(SED)  "s,$(HOST_DIR),@HOST_DIR@,g" \
 				-e "s,$(BASE_DIR),@BASE_DIR@,g" \
-				-e "s,^\(exec_\)\?prefix=.*,\1prefix=@STAGING_DIR@/usr,g" \
-				-e "s,-I/usr/,-I@STAGING_DIR@/usr/,g" \
-				-e "s,-L/usr/,-L@STAGING_DIR@/usr/,g" \
+				-e "s,^\(exec_\)\?prefix=.*,\1prefix=@STAGING_DIR@$(PKG_INSTALL_PREFIX),g" \
+				-e "s,-I/usr/,-I@STAGING_DIR@$(PKG_INSTALL_PREFIX)/,g" \
+				-e "s,-L/usr/,-L@STAGING_DIR@$(PKG_INSTALL_PREFIX)/,g" \
 				-e 's,@STAGING_DIR@,$$(dirname $$(readlink -e $$0))/../..,g' \
 				-e 's,@HOST_DIR@,$$(dirname $$(readlink -e $$0))/../../../..,g' \
 				-e "s,@BASE_DIR@,$(BASE_DIR),g" \
-				$(addprefix $(STAGING_DIR)/usr/bin/,$($(PKG)_CONFIG_SCRIPTS)) ;\
+				$(addprefix $(STAGING_DIR)$(PKG_INSTALL_PREFIX)/bin/,$($(PKG)_CONFIG_SCRIPTS)) ;\
 	fi
 	@$(call MESSAGE,"Fixing libtool files")
 	for la in $$(find $(STAGING_DIR)/usr/lib* -name "*.la"); do \
