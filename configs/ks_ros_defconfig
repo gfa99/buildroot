@@ -25,15 +25,11 @@ BR2_TOOLCHAIN_EXTERNAL_OPENMP=y
 # System configuration
 #
 BR2_ROOTFS_MERGED_USR=y
-BR2_NOT_REMOVE_ANYTHING_OF_TARGET=y
-BR2_NOT_CHECK_CONFIG_OF_TARGET=y
 BR2_PACKAGE_INSTALL_PREFIX="/usr/local"
 
 #
 # Target packages
 #
-## Development tools -> ctest
-BR2_PACKAGE_CMAKE_CTEST=y
 ## Interpreter languages and scripting -> python3
 BR2_PACKAGE_PYTHON3=y
 BR2_PACKAGE_PYTHON_PIP=y
