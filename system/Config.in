@@ -609,6 +609,9 @@ config BR2_NOT_REMOVE_ANYTHING_OF_TARGET
 config BR2_NOT_CHECK_CONFIG_OF_TARGET
 	bool "Not check some config of target"
 
+config BR2_TAKE_SYSROOT_FROM_ROOTFS
+	bool "If need to take sysroot from rootfs"
+
 config BR2_PACKAGE_INSTALL_PREFIX
 	string "Specifies the installation path for the package"
 	default "/usr"
