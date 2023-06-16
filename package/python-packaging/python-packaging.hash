@@ -1,0 +1,4 @@
+# md5 from https://pypi.org/pypi/packaging/json, sha256 locally computed
+md5	760e64c3188d08823a392b29aaef02f6  packaging-23.1-py3-none-any.whl
+sha256	994793af429502c4ea2ebf6bf664629d07c1a9fe974af92966e4b8d2df7edc61  packaging-23.1-py3-none-any.whl
+sha256	0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594  packaging-23.1.dist-info/LICENSE.APACHE
